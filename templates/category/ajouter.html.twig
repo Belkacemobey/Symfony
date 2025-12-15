@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une catégorie{% endblock %}
+
+{% block body %}
+    <h1>Ajouter une catégorie</h1>
+    
+    <div class="card">
+        <div class="card-body">
+            {{ form_start(f) }}
+                <div class="mb-3">
+                    {{ form_label(f.nomCategory, null, {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(f.nomCategory, {'attr': {'class': 'form-control', 'placeholder': 'Entrez le nom de la catégorie'}}) }}
+                    {{ form_errors(f.nomCategory) }}
+                </div>
+                
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-success">
+                        <i class="bi bi-check-circle"></i> Enregistrer
+                    </button>
+                    <a href="{{ path('app_category') }}" class="btn btn-secondary">
+                        <i class="bi bi-x-circle"></i> Annuler
+                    </a>
+                </div>
+            {{ form_end(f) }}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier tous les Meubles{% endblock %}
+
+{% block body %}
+    <h1>Modifier tous les meubles</h1>
+    
+    <div class="card">
+        <div class="card-body">
+            <form method="post">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Nom actuel</th>
+                                <th>Nouveau nom</th>
+                                <th>Prix actuel</th>
+                                <th>Nouveau prix</th>
+                                <th>Catégorie</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for meuble in meubles %}
+                            <tr>
+                                <td>{{ meuble.nomM }}</td>
+                                <td>
+                                    <input type="text" name="nomM_{{ meuble.id }}" 
+                                           value="{{ meuble.nomM }}" 
+                                           class="form-control form-control-sm">
+                                </td>
+                                <td>{{ meuble.prix }} TND</td>
+                                <td>
+                                    <input type="number" name="prix_{{ meuble.id }}" 
+                                           value="{{ meuble.prix }}" 
+                                           step="0.01" 
+                                           class="form-control form-control-sm">
+                                </td>
+                                <td>{{ meuble.category.nomCategory }}</td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="5" class="text-center">Aucun meuble à modifier</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                
+                {% if meubles|length > 0 %}
+                    <div class="mt-3 d-flex gap-2">
+                        <button type="submit" class="btn btn-warning">
+                            <i class="bi bi-save"></i> Enregistrer toutes les modifications
+                        </button>
+                        <a href="{{ path('app_meubles') }}" class="btn btn-secondary">
+                            <i class="bi bi-arrow-left"></i> Retour à la liste
+                        </a>
+                    </div>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+{% endblock %}

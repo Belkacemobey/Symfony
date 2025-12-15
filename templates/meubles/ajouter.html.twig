@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% if titre is defined %}{{ titre }}{% else %}Ajouter un meuble{% endif %}{% endblock %}
+
+{% block body %}
+    <h1>{% if titre is defined %}{{ titre }}{% else %}Ajouter un meuble{% endif %}</h1>
+    
+    <div class="card">
+        <div class="card-body">
+            {{ form_start(f) }}
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            {{ form_label(f.nomM, null, {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(f.nomM, {'attr': {'class': 'form-control', 'placeholder': 'Nom du meuble'}}) }}
+                            {{ form_errors(f.nomM) }}
+                        </div>
+                        
+                        <div class="mb-3">
+                            {{ form_label(f.prix, null, {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(f.prix, {'attr': {'class': 'form-control', 'placeholder': 'Prix en euros'}}) }}
+                            {{ form_errors(f.prix) }}
+                        </div>
+                        
+                        <div class="mb-3">
+                            {{ form_label(f.since_At, null, {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(f.since_At, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(f.since_At) }}
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            {{ form_label(f.description, null, {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(f.description, {'attr': {'class': 'form-control', 'rows': 4, 'placeholder': 'Description du meuble'}}) }}
+                            {{ form_errors(f.description) }}
+                        </div>
+                        
+                        <div class="mb-3">
+                            {{ form_label(f.image, null, {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(f.image, {'attr': {'class': 'form-control', 'placeholder': 'URL de l\'image (optionnel)'}}) }}
+                            {{ form_errors(f.image) }}
+                        </div>
+                        
+                        <div class="mb-3">
+                            {{ form_label(f.category, null, {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(f.category, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(f.category) }}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-success">
+                        <i class="bi bi-check-circle"></i> {{ button_label|default('Enregistrer') }}
+                    </button>
+                    <a href="{{ path('app_meubles') }}" class="btn btn-secondary">
+                        <i class="bi bi-x-circle"></i> Annuler
+                    </a>
+                </div>
+            {{ form_end(f) }}
+        </div>
+    </div>
+{% endblock %}

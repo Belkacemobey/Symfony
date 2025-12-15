@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil - Recherche de meubles{% endblock %}
+
+{% block body %}
+    <h1>Rechercher des meubles</h1>
+    
+    {{ form_start(form) }}
+        <div class="mb-3">
+            {{ form_widget(form.critere, {'attr': {'class': 'form-control', 'placeholder': 'Nom ou description...'}}) }}
+        </div>
+        {{ form_widget(form.Valider, {'attr': {'class': 'btn btn-primary'}}) }}
+    {{ form_end(form) }}
+    
+    <hr>
+    
+    <h2>Résultats ({{ lesMeubles|length }})</h2>
+    
+    {% if lesMeubles is empty %}
+        <div class="alert alert-info">Aucun meuble trouvé</div>
+    {% else %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prix</th>
+                    <th>Catégorie</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for meuble in lesMeubles %}
+                    <tr>
+                        <td>{{ meuble.nomM }}</td>
+                        <td>{{ meuble.prix }} TND</td>
+                        <td>{{ meuble.category.nomCategory }}</td>
+                        <td>{{ meuble.description|slice(0, 50) }}...</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}
