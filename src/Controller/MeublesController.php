@@ -95,7 +95,7 @@ class MeublesController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            // Gestion de l'upload de l'image
+            
             $imageFile = $form->get('image')->getData();
             if ($imageFile) {
                 $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
@@ -244,6 +244,7 @@ class MeublesController extends AbstractController
     }
 
     #[Route('/meubles', name: 'app_meubles')]
+
     public function index(EntityManagerInterface $entityManager): Response
     {
         $meubles = $entityManager->getRepository(Meubles::class)->findAll();

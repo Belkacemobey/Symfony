@@ -14,7 +14,6 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class CategoryController extends AbstractController
 {
-    // 1. ROUTE D'AJOUT EN PREMIER (très spécifique)
     #[Route('/category/ajouter', name: 'add_category')]
     public function ajouterCategory(Request $request, EntityManagerInterface $em): Response
     {
@@ -40,8 +39,9 @@ class CategoryController extends AbstractController
         ]);
     }
     
-    // 2. ROUTE DE LISTE (spécifique)
+    
     #[Route('/category', name: 'app_category')]
+
     public function index(EntityManagerInterface $entityManager): Response
     {
         // Récupérer toutes les catégories depuis la base de données
